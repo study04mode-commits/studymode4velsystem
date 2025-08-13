@@ -93,7 +93,7 @@ const Navigation = React.memo(() => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-between space-x-2">
             <div className="relative group">
-              <Link to="/coming-soon" className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
+              <Link to="/power-solutions" className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
                 <span>Power Solutions</span>
               </Link>
             </div>

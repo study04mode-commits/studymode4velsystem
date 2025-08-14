@@ -28,16 +28,16 @@ const Navigation = React.memo(() => {
     { title: 'Tablet', href: '/tablet' },
     { title: 'Software', href: '/software' },
     { title: 'Mobile Accessories', href: '/mobile-accessories' },
-    { title: 'Server & Workstation', href: '/coming-soon' },
-    { title: 'Network Hardware Solution', href: '/coming-soon' },
-    { title: 'Online & Offline UPS', href: '/coming-soon' },
-    { title: 'Firewall', href: '/coming-soon' },
-    { title: 'IT Peripherals', href: '/coming-soon' },
-    { title: 'WiFi Access Point', href: '/coming-soon' },
-    { title: 'Photocopier', href: '/coming-soon' },
-    { title: 'Data Storage', href: '/coming-soon' },
-    { title: 'Data Recovery', href: '/coming-soon' },
-    { title: 'Projector', href: '/coming-soon' }
+    { title: 'Server & Workstation', href: '/server' },
+    { title: 'Network Hardware Solution', href: '/network-hardware' },
+    { title: 'Online & Offline UPS', href: '/ups' },
+    { title: 'Firewall', href: '/firewall' },
+    { title: 'IT Peripherals', href: '/it-peripherals' },
+    { title: 'WiFi Access Point', href: '/wifi-access-point' },
+    { title: 'Photocopier', href: '/photocopier' },
+    { title: 'Data Storage', href: '/data-storage' },
+    { title: 'Data Recovery', href: '/data-recovery' },
+    { title: 'Projector', href: '/projector' }
   ];
 
   const securitySolutions = [
@@ -144,7 +144,7 @@ const Navigation = React.memo(() => {
               Blog
             </Link>
             <Link to="/power-solutions" className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
-              Contact Us
+              <span>Contact Us</span>
             </Link>
           </div>
 

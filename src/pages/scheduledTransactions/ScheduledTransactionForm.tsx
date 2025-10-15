@@ -31,6 +31,8 @@ import FormDescriptionField from '../../components/forms/FormDescriptionField';
 import FormTagsField from '../../components/forms/FormTagsField';
 import FormActions from '../../components/forms/FormActions';
 import FormLoadingSkeleton from '../../components/forms/FormLoadingSkeleton';
+import FormTypeToggle from '../../components/forms/FormTypeToggle';
+import FormCategorySelector from '../../components/forms/FormCategorySelector';
 
 const tabs = ['Expense', 'Income', 'Transfer'];
 
@@ -210,30 +212,12 @@ function ScheduledTransactionForm() {
       />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 lg:space-y-8">
-        {/* Transaction Type Tabs */}
-        <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-          <label className="block text-sm sm:text-base font-medium text-gray-700 mb-3 sm:mb-4">
-            Transaction Type
-          </label>
-          <div className="flex bg-gray-100 rounded-lg p-1">
-            {tabs.map((tab, index) => {
-              const active = activeTab === index;
-              return (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(index)}
-                  className={`flex-1 text-xs sm:text-sm font-medium rounded-lg py-2 transition-all duration-200 ${active
-                    ? "bg-white shadow text-black"
-                    : "text-gray-500 hover:text-black"
-                    }`}
-                >
-                  {tab}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <FormTypeToggle
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          label="Transaction Type"
+        />
 
         <FormDateTimeFields
           dateValue={watchedValues.startDate}
@@ -257,34 +241,11 @@ function ScheduledTransactionForm() {
           onAmountChange={handleAmountChange}
         />
 
-        {/* Category (for Expense and Income) */}
         {activeTab !== 2 && (
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <label className="block text-sm sm:text-base font-medium text-gray-700">
-                Category
-              </label>
-              <button
-                type="button"
-                onClick={() => setIsCategoryModalOpen(true)}
-                className="text-indigo-600 hover:text-indigo-700 text-xs sm:text-sm flex items-center"
-              >
-                <Edit className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                Change
-              </button>
-            </div>
-
-            {selectedCategory ? (
-              <div className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 bg-gray-50 rounded-lg">
-                <CategoryIcon icon={selectedCategory.icon} color={selectedCategory.color} />
-                <span className="text-sm sm:text-base font-medium text-gray-900">{selectedCategory.name}</span>
-              </div>
-            ) : (
-              <div className="p-2 sm:p-3 bg-gray-50 rounded-lg text-xs sm:text-sm text-gray-500">
-                No category selected
-              </div>
-            )}
-          </div>
+          <FormCategorySelector
+            selectedCategory={selectedCategory}
+            onChangeClick={() => setIsCategoryModalOpen(true)}
+          />
         )}
 
         {/* Account (for Expense and Income) */}

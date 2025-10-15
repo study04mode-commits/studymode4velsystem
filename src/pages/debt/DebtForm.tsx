@@ -12,6 +12,7 @@ import FormDescriptionField from '../../components/forms/FormDescriptionField';
 import FormAccountField from '../../components/forms/FormAccountField';
 import FormActions from '../../components/forms/FormActions';
 import FormLoadingSkeleton from '../../components/forms/FormLoadingSkeleton';
+import FormTypeToggle from '../../components/forms/FormTypeToggle';
 
 interface FormData {
   personName: string;
@@ -159,41 +160,17 @@ function DebtForm() {
         {/* Step 1: Debt Details */}
         {(step === 1 || isEditing) && (
           <>
-            {/* Debt Type */}
             {!isEditing && (
-              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-                <label className="block text-sm sm:text-base font-medium text-gray-700 mb-3 sm:mb-4">
-                  Debt Type
-                </label>
-                <div className="flex bg-gray-100 rounded-lg p-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setValue('type', '1');
-                      setValue('recordType', '1');
-                    }}
-                    className={`flex-1 text-xs sm:text-sm font-medium rounded-lg py-2 transition-all duration-200 ${watchedType === '1'
-                      ? "bg-white shadow text-black"
-                      : "text-gray-500 hover:text-black"
-                      }`}
-                  >
-                    Lending
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setValue('type', '2');
-                      setValue('recordType', '2');
-                    }}
-                    className={`flex-1 text-xs sm:text-sm font-medium rounded-lg py-2 transition-all duration-200 ${watchedType === '2'
-                      ? "bg-white shadow text-black"
-                      : "text-gray-500 hover:text-black"
-                      }`}
-                  >
-                    Borrowing
-                  </button>
-                </div>
-              </div>
+              <FormTypeToggle
+                tabs={['Lending', 'Borrowing']}
+                activeTab={watchedType === '1' ? 0 : 1}
+                onTabChange={(index) => {
+                  const newType = index === 0 ? '1' : '2';
+                  setValue('type', newType);
+                  setValue('recordType', newType);
+                }}
+                label="Debt Type"
+              />
             )}
 
             {/* Person Name */}

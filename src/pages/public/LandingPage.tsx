@@ -1,40 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { BarChart3, Wallet, PieChart, Shield, Zap } from "lucide-react";
 import Layout from "./Layout";
-
-interface ButtonProps {
-  to: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
-}
-
-const Button: React.FC<ButtonProps> = ({
-  to,
-  children,
-  variant = "primary",
-  size = "md",
-}) => {
-  const base =
-    "inline-block rounded-full font-semibold transition shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2";
-  const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
-    secondary:
-      "bg-white text-blue-700 hover:bg-gray-100 focus:ring-blue-500 border border-blue-200",
-  };
-  const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg",
-  };
-
-  return (
-    <Link to={to} className={`${base} ${variants[variant]} ${sizes[size]}`}>
-      {children}
-    </Link>
-  );
-};
+import Button from "../../components/public/Button";
+import CTASection from "../../components/public/CTASection";
 
 const LandingPage: React.FC = () => {
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
@@ -209,21 +177,12 @@ const LandingPage: React.FC = () => {
       </section>
 
 
-      {/* Final CTA */}
-      <section className="py-14 sm:py-24 lg:py-32 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center">
-        <div className="max-w-2xl mx-auto px-5">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5">
-            Ready to take control of your finances?
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed opacity-90">
-            Join thousands of users already using ExpenseTrace to manage
-            accounts, categories, transactions, debt, and analysis.
-          </p>
-          <Button to="/log-in-or-create-account" variant="secondary">
-            Start Free Today
-          </Button>
-        </div>
-      </section>
+      <CTASection
+        title="Ready to take control of your finances?"
+        description="Join thousands of users already using ExpenseTrace to manage accounts, categories, transactions, debt, and analysis."
+        buttonText="Start Free Today"
+        buttonLink="/log-in-or-create-account"
+      />
     </Layout>
   );
 };

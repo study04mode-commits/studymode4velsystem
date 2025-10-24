@@ -1,46 +1,21 @@
-import { Link } from "react-router-dom";
+import PublicHeader from "../../components/public/PublicHeader";
+import PublicFooter from "../../components/public/PublicFooter";
+import HeroSection from "../../components/public/HeroSection";
+import CTASection from "../../components/public/CTASection";
+import ContentSection from "../../components/public/ContentSection";
 
 export default function TermsAndConditionsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="w-full bg-white shadow-sm">
-        <div className="flex w-full px-4 py-3 sm:px-6 sm:py-4 items-center justify-between max-w-7xl mx-auto">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <img
-              src="../logo.png"
-              alt="ExpenseTrace Logo"
-              className="h-7 sm:h-10 lg:h-12 w-auto"
-            />
-          </Link>
+      <PublicHeader />
 
-          {/* Sign In */}
-          <Link
-            to="/log-in-or-create-account"
-            className="px-3 py-1.5 sm:px-5 sm:py-2 border border-gray-300 rounded-full text-sm sm:text-base font-medium text-gray-700 hover:bg-gray-100 transition"
-          >
-            Sign In
-          </Link>
-        </div>
-      </header>
-
-      {/* Main */}
       <main className="flex-grow">
-        {/* Hero */}
-        <section className="py-10 sm:py-20 lg:py-28 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center">
-          <div className="max-w-3xl mx-auto px-5">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-snug">
-              Terms & Conditions
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed opacity-90">
-              Please read these terms carefully before using ExpenseTrace.
-            </p>
-          </div>
-        </section>
+        <HeroSection
+          title="Terms & Conditions"
+          description="Please read these terms carefully before using ExpenseTrace."
+        />
 
-        {/* Terms Content */}
-        <section className="py-12 sm:py-20 lg:py-24 bg-white">
+        <ContentSection>
           <div className="max-w-4xl mx-auto px-5 text-gray-700 space-y-10">
             {[
               {
@@ -78,44 +53,20 @@ export default function TermsAndConditionsPage() {
               </div>
             ))}
           </div>
-        </section>
+        </ContentSection>
 
-        {/* CTA */}
-        <section className="py-14 sm:py-24 lg:py-32 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center">
-          <div className="max-w-2xl mx-auto px-5">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5">
-              Need Assistance?
-            </h2>
-            <p className="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed opacity-90">
-              If you have questions about these Terms & Conditions, feel free to
-              reach out to our support team.
-            </p>
-            <Link
-              to="/about"
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </section>
+        <CTASection
+          title="Need Assistance?"
+          description="If you have questions about these Terms & Conditions, feel free to reach out to our support team."
+          buttonText="Contact Us"
+          buttonLink="/about"
+        />
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300">
-        <div className="max-w-7xl mx-auto px-5 py-8 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4">
-          <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-            © {new Date().getFullYear()} ExpenseTrace. All rights reserved.
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base">
-            <Link to="/privacy" className="hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link to="/about" className="hover:text-white">
-              About
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <PublicFooter links={[
+        { to: "/privacy", label: "Privacy Policy" },
+        { to: "/about", label: "About" }
+      ]} />
     </div>
   );
 }

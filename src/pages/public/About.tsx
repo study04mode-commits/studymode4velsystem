@@ -1,5 +1,9 @@
-import { Link } from "react-router-dom";
 import { Users, Target, ShieldCheck, Github, Linkedin } from "lucide-react";
+import PublicHeader from "../../components/public/PublicHeader";
+import PublicFooter from "../../components/public/PublicFooter";
+import HeroSection from "../../components/public/HeroSection";
+import CTASection from "../../components/public/CTASection";
+import ContentSection from "../../components/public/ContentSection";
 
 export default function AboutPage() {
   const values = [
@@ -14,7 +18,7 @@ export default function AboutPage() {
       text: "We provide insights that help users take control of their money and reach their goals faster.",
     },
     {
-      icon: <ShieldCheck className="w-12 h-12 text-purple-600 mb-5" />,
+      icon: <ShieldCheck className="w-12 h-12 text-blue-600 mb-5" />,
       title: "Trust",
       text: "Security and privacy are at the heart of everything we build. Your data is always safe with us.",
     },
@@ -22,45 +26,19 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="w-full bg-white shadow-sm">
-        <div className="flex w-full px-4 py-3 sm:px-6 sm:py-4 items-center justify-between max-w-7xl mx-auto">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <img
-              src="../logo.png"
-              alt="ExpenseTrace Logo"
-              className="h-7 sm:h-10 lg:h-12 w-auto"
-            />
-          </Link>
+      <PublicHeader />
 
-          {/* Sign In */}
-          <Link
-            to="/log-in-or-create-account"
-            className="px-3 py-1.5 sm:px-5 sm:py-2 border border-gray-300 rounded-full text-sm sm:text-base font-medium text-gray-700 hover:bg-gray-100 transition"
-          >
-            Sign In
-          </Link>
-        </div>
-      </header>
-
-      {/* Main */}
       <main className="flex-grow">
-        {/* Hero */}
-        <section className="py-10 sm:py-20 lg:py-28 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center">
-          <div className="max-w-3xl mx-auto px-5">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-snug">
+        <HeroSection
+          title={
+            <>
               About <span className="text-yellow-300">ExpenseTrace</span>
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed opacity-90">
-              We’re on a mission to make personal finance simple, smart, and
-              stress-free for everyone.
-            </p>
-          </div>
-        </section>
+            </>
+          }
+          description="We're on a mission to make personal finance simple, smart, and stress-free for everyone."
+        />
 
-        {/* Values */}
-        <section className="py-12 sm:py-20 lg:py-24 bg-white">
+        <ContentSection>
           <div className="max-w-6xl mx-auto px-5">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">
               Our Core Values
@@ -82,10 +60,9 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </section>
+        </ContentSection>
 
-        {/* Developer */}
-        <section className="py-12 sm:py-20 lg:py-24 bg-white">
+        <ContentSection>
           <div className="max-w-4xl mx-auto px-5 text-center">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
               Meet the Developer
@@ -126,44 +103,20 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </ContentSection>
 
-        {/* CTA */}
-        <section className="py-14 sm:py-24 lg:py-32 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center">
-          <div className="max-w-2xl mx-auto px-5">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5">
-              Join Us on the Journey
-            </h2>
-            <p className="text-base sm:text-lg lg:text-xl mb-8 leading-relaxed opacity-90">
-              ExpenseTrace is more than just an app — it’s a step toward a
-              brighter financial future.
-            </p>
-            <Link
-              to="/log-in-or-create-account"
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition"
-            >
-              Get Started Free
-            </Link>
-          </div>
-        </section>
+        <CTASection
+          title="Join Us on the Journey"
+          description="ExpenseTrace is more than just an app — it's a step toward a brighter financial future."
+          buttonText="Get Started Free"
+          buttonLink="/log-in-or-create-account"
+        />
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300">
-        <div className="max-w-7xl mx-auto px-5 py-8 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4">
-          <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-            © {new Date().getFullYear()} ExpenseTrace. All rights reserved.
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base">
-            <Link to="/privacy" className="hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:text-white">
-              Terms & Conditions
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <PublicFooter links={[
+        { to: "/privacy", label: "Privacy Policy" },
+        { to: "/terms", label: "Terms & Conditions" }
+      ]} />
     </div>
   );
 }
